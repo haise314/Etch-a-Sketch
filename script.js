@@ -9,7 +9,7 @@ let gridSize = 16;
 const gridContainer = document.querySelector("#grid-container");
 
 function generateGrid (gridSize){
-    console.log("Gridsize:" + gridSize);
+    // console.log("Gridsize:" + gridSize);
 
     for (let i = 0; i < gridSize; i++){
         for (let j = 0; j < gridSize; j++){
@@ -19,9 +19,9 @@ function generateGrid (gridSize){
 
             let gridWidth = 100 / gridSize;
             tile.style.flex = `1 1 ${gridWidth}%`;
-            console.log("j count: " + j);
+            // console.log("j count: " + j);
         }
-        console.log("i count: " + i);
+        // console.log("i count: " + i);
     }
 }
 
@@ -41,10 +41,31 @@ newGridBtn.addEventListener("click", () => {
     generateGrid(gridSize);
 })
 
-
-
 // TODO: Add event listeners to the entire grid 
 //       probably mouse events then set colors
+
+const tile = document.querySelectorAll(".tile");
+
+gridContainer.addEventListener("mouseover", (e) => {
+    console.log("mouse entered");
+    const tile = e.target.closest(".tile");
+    console.log(tile);
+    if (!tile) return;
+
+    tile.style.backgroundColor = "white";
+})
+
+gridContainer.addEventListener("mouseleave", (e) => {
+    console.log("mouse left");
+    const tile = e.target.closest(".tile");
+    console.log(tile);
+    if (!tile) return;
+
+    tile.style.backgroundColor = "black";
+})
+
+
+
 // TODO: Have the pixel change color have trailing effect
 // TODO: Randomize the trailing effect and darken the 
 //       previous ones by 10% per trail 
